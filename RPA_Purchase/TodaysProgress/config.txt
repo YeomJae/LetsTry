@@ -1,0 +1,18 @@
+[login]
+NAME = 백영재
+ID = byj
+PW = Alsk123!
+EMAIL = byj@sejong.ac.kr
+
+[setting]
+SEARCHKEYWORD = IACFPYTHON
+CONSOLETF = True
+DOWNLOADS = %%UserProfile%%\Downloads
+
+[iacf]
+URL = https://iacf.sejong.ac.kr/
+ID = 751370
+PW = Alsk123!
+ID_CSS = #USER_NM
+PW_CSS = #USER_PW
+LOGIN_BT_CSS = #btn_login
