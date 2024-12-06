@@ -12,8 +12,6 @@ chrome_options = Options()
 # chrome_options.add_argument("headless")
 chrome_options.add_experimental_option("detach", True)
 chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
-chrome_options.add_argument("--disable-blink-features=AutomationControlled")  # 자동화 탐지 방지
-chrome_options.add_argument("--disable-features=IsolateOrigins,site-per-process")  # 일부 보안 기능 비활성화
 chrome_options.add_experimental_option("prefs", {
 "safebrowsing.enabled": True,
 "credentials_enable_service": False,
