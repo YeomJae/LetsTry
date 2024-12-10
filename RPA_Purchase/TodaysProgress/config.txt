@@ -2,7 +2,6 @@
 NAME = 백영재
 ID = byj
 PW = Alsk123!
-EMAIL = byj@sejong.ac.kr
 
 [setting]
 SEARCHKEYWORD = IACFPYTHON
@@ -16,3 +15,17 @@ PW = Alsk123!
 ID_CSS = #USER_NM
 PW_CSS = #USER_PW
 LOGIN_BT_CSS = #btn_login
+ST_DATE = 20241101
+
+[EMAIL]
+PW = Alsk123!
+Sender_address = byj@sejong.ac.kr
+Sender_NAME = 백영재(구매담당)
+
+[EMAIL_RECEIVER]
+NAME1 = 백영재1
+address1 = byj@sejong.ac.kr
+NAME2 = 백영재2
+address2 = byj@sejong.ac.kr
+NAME3 = 백영재3
+address3 = byj@sejong.ac.kr
