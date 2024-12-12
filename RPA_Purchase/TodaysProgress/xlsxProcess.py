@@ -1,28 +1,31 @@
 import os
 import pandas as pd
-from tkinter import filedialog, messagebox, Tk
-from openpyxl import load_workbook
-import util as ut
 
-# 시트 이름 정의
-SHEET_NAMES = {
-    "raw": "구매진행관리",
-    "pivot_data": "피봇자료",
-    "sort_data": "분류자료"
-}
-
-def xlsxprocess(file_name)
-    current_dir = ut.exedir('py')
-    file_path = os.path.join(current_dir, "download")
+def xlsxProcess(input_file_name, output_file_name):
+    """
+    엑셀 파일을 읽고, 지정된 컬럼을 제거한 후 진행상태별로 데이터를 분류하고 요청일자로 정렬하여
+    새로운 엑셀 파일로 저장하는 함수입니다.
+    """
+    input_file_path = os.path.join(os.getcwd(), 'download', input_file_name)
+    output_file_path = os.path.join(os.getcwd(), 'result', output_file_name)
     
-    df_rawdata = pd.read_excel(file_path)
-    df_sort = df_rawdata(by='진행현황', ascending = False)
+    # 엑셀 파일 로드
+    excel_data = pd.ExcelFile(input_file_path)
+    df = excel_data.parse('Sheet')  # 'Sheet'는 시트 이름입니다.
 
-    # 결과 저장 경로 설정
-    output_file_path = os.path.join(input_folder_path, f"processed_{file_name}")
+    # 컬럼 제거
+    columns_to_remove = ['선택', 'No', '세부구분', '구매진행상세', '접수자']
+    df_cleaned = df.drop(columns=columns_to_remove)
 
-    # 결과 저장
-    with pd.ExcelWriter(output_file_path, engine='openpyxl') as writer:
-        df_rawdata.to_excel(writer, sheet_name=SHEET_NAMES["raw"], index=False)
-        df_piv.to_excel(writer, sheet_name=SHEET_NAMES["pivot_data"])
-        df_sort.to_excel(writer, sheet_name=SHEET_NAMES["sort_data"])
+    # 진행상태별로 데이터 분류 및 요청일자 기준 정렬
+    grouped_data = {status: group.sort_values(by='요청일자') for status, group in df_cleaned.groupby('진행상태')}
+
+    # 새로운 엑셀 파일 생성
+    with pd.ExcelWriter(output_file_path, engine='xlsxwriter') as writer:
+        for status, group in grouped_data.items():
+            group.to_excel(writer, sheet_name=str(status), index=False)
+
+    print(f"작업 완료. 파일이 '{output_file_path}'에 저장되었습니다.")
+
+# 사용 예시
+# xlsxProcess('구매요구목록.xlsx', '구매요구목록_분류정렬.xlsx')

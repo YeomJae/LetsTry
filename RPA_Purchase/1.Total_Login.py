@@ -35,9 +35,10 @@ sleep(3)
 driver.switch_to.window(main_window[0])
 driver.find_element(By.CSS_SELECTOR, "#menu_id_3").click()
 iframes = driver.find_elements(By.TAG_NAME, 'iframe')
-# for i, iframe in enumerate(iframes):
-#    print(f"iframe {i}: {iframe.get_attribute('id')}, {iframe.get_attribute('name')}, {iframe.get_attribute('src')}")
+for i, iframe in enumerate(iframes):
+    print(f"iframe {i}: {iframe.get_attribute('id')}, {iframe.get_attribute('name')}, {iframe.get_attribute('src')}")
 
+"""
 driver.switch_to.frame(iframes[1])
 driver.find_element(By.CSS_SELECTOR, "#START_DATE").clear()
 driver.find_element(By.CSS_SELECTOR, "#START_DATE").send_keys("20240701")
@@ -56,7 +57,4 @@ driver.find_element(By.CSS_SELECTOR, config["mail"]["RECEIVE_MAIL_CSS"]).click()
 
 driver.switch_to.window(driver.window_handles[0])
 driver.execute_script('window.open("http://sjgw.sejong.ac.kr/");')
-
-# driver.find_element(By.CSS_SELECTOR, config["gw"]["ID_CSS"]).send_keys(config["login"]["ID"])
-# driver.find_element(By.CSS_SELECTOR, config["gw"]["PW_CSS"]).send_keys(config["login"]["PW"])
-# driver.find_element(By.CSS_SELECTOR, config["gw"]["LOGIN_BT_CSS"]).click()
+"""
