@@ -7,6 +7,7 @@ import os
 import util as ut
 
 config = ut.load_config()
+current_dir = ut.exedir('py')
 
 def SMTP_send(output_file_name):
     # 이메일 정보
@@ -15,13 +16,11 @@ def SMTP_send(output_file_name):
     password = config["EMAIL"]["PW"]  # 발신자 이메일 비밀번호
     # 받는 사람 목록
     recipients = [
-        {"name":config["EMAIL_RECEIVER"]["NAME1"], "email":config["EMAIL_RECEIVER"]["address1"]},
-        {"name":config["EMAIL_RECEIVER"]["NAME2"], "email":config["EMAIL_RECEIVER"]["address2"]},
-        {"name":config["EMAIL_RECEIVER"]["NAME3"], "email":config["EMAIL_RECEIVER"]["address3"]}
-    ]
+        {"name":config["EMAIL_RECEIVER"]["NAME1"], "email":config["EMAIL_RECEIVER"]["address1"]}
+        ]
 
     # 엑셀 파일 경로
-    excel_file = os.path.join(os.getcwd(), 'result', output_file_name)
+    excel_file = os.path.join(current_dir, 'result', output_file_name)
 
     # 이메일 메시지 기본 구성
     base_msg = MIMEMultipart()
@@ -38,7 +37,7 @@ def SMTP_send(output_file_name):
 
     # 엑셀 파일 첨부
     with open(excel_file, 'rb') as attachment:
-        part = MIMEApplication(attachment.read(), Name="구매진행현황_")
+        part = MIMEApplication(attachment.read(), Name="구매진행현황_일일보고.xlsx")
         part['Content-Disposition'] = f'attachment; filename="{os.path.basename(excel_file)}"'
         base_msg.attach(part)
 
