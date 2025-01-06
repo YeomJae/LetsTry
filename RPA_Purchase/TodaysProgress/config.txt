@@ -25,7 +25,3 @@ Sender_NAME = 백영재(구매담당)
 [EMAIL_RECEIVER]
 NAME1 = 백영재1
 address1 = byj@sejong.ac.kr
-NAME2 = 백영재2
-address2 = byj@sejong.ac.kr
-NAME3 = 백영재3
-address3 = byj@sejong.ac.kr

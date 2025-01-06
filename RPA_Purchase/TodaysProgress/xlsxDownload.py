@@ -45,12 +45,11 @@ def xlsxDownload():
 
     driver.switch_to.window(main_window[0])
     driver.find_element(By.CSS_SELECTOR, "#menu_id_3").click()
-    # iframes = driver.find_elements(By.TAG_NAME, 'iframe')
-    # for i, iframe in enumerate(iframes):
+    iframes = driver.find_elements(By.TAG_NAME, 'iframe')
+    #for i, iframe in enumerate(iframes):
     #    print(f"iframe {i}: {iframe.get_attribute('id')}, {iframe.get_attribute('name')}, {iframe.get_attribute('src')}")
 
-    # driver.switch_to.frame(iframes[1])
-    driver.get("https://iacf.sejong.ac.kr/main_0001_08.act")
+    driver.switch_to.frame(iframes[1])
     driver.find_element(By.CSS_SELECTOR, "#START_DATE").clear()
     driver.find_element(By.CSS_SELECTOR, "#START_DATE").send_keys("20240501")
     driver.find_element(By.CSS_SELECTOR, "#btnSearch").click()
